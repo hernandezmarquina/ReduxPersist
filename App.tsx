@@ -1,12 +1,18 @@
-import React from 'react';
-import {SafeAreaView, StatusBar, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {SafeAreaView, StatusBar} from 'react-native';
+import Main from './src/screens/Main/Main';
+import LoginScreen from './src/screens/Login/LoginScreen';
 
 const App = () => {
+  const [session, setSession] = useState(false);
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} />
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={{flex: 1}}>
+        <StatusBar barStyle={'dark-content'} />
+        {session ? <Main /> : <LoginScreen />}
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
