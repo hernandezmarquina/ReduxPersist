@@ -1,14 +1,24 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createReducer} from '@reduxjs/toolkit';
+import {API} from '../../network/api';
 
-const employeesSlice = createSlice({
-  name: 'employees',
-  initialState: {}, // Estado inicial para el usuario
-  reducers: {
-    // Reducers para manejar la información del usuario
+export const getEmployeesAction = createAsyncThunk(
+  'employees/getAll',
+  async () => {
+    const response = await fetch(`${API}/users`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+    });
+    const data = await response.json();
+    return data.users;
   },
+);
+
+const initialState: {employees?: any[]} = {};
+
+const employeesReducer = createReducer(initialState, builder => {
+  builder.addCase(getEmployeesAction.fulfilled, (state, action) => {
+    state.employees = action.payload;
+  });
 });
 
-export const {
-  /* exportar acciones aquí */
-} = employeesSlice.actions;
-export default employeesSlice.reducer;
+export default employeesReducer;

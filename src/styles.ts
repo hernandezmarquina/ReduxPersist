@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   centeredContainer: {
     flex: 1,
     justifyContent: 'center',

@@ -6,7 +6,7 @@ import LoginScreen from './src/screens/Login/LoginScreen';
 import {useAppSelector} from './src/store/hooks';
 
 const App = () => {
-  const sessionToken = useAppSelector(state => state.user.token);
+  const sessionToken = true; //useAppSelector(state => state.user.token);
   return (
     <NavigationContainer>
       <SafeAreaView style={{flex: 1}}>
