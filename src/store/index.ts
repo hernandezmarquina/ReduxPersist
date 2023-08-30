@@ -1,14 +1,14 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import tripsReducers from './reducers/tripsReducers';
 import promotionsReducer from './reducers/promotionsReducer';
+import employeesReducer from './reducers/employeesReducer';
 import userReducer from './reducers/userReducer';
-import chatReducer from './reducers/chatReducer';
 
 const rootReducer = combineReducers({
   trips: tripsReducers,
   promotions: promotionsReducer,
   user: userReducer,
-  chat: chatReducer,
+  employees: employeesReducer,
 });
 
 const store = configureStore({
@@ -16,3 +16,8 @@ const store = configureStore({
 });
 
 export default store;
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
