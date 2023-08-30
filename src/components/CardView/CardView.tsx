@@ -4,7 +4,7 @@ import {ICardViewProps} from './types';
 
 const CardView = (props: ICardViewProps) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Image style={styles.avatar} src={props.image} />
       <View>
         <Text style={styles.title}>{props.title}</Text>

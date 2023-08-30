@@ -11,7 +11,6 @@ const EmployeesMain = () => {
     <Stack.Navigator
       screenOptions={() => ({
         headerBackTitleVisible: false,
-        title: 'Empleados',
       })}>
       <Stack.Screen name={SCREENS.EMPLOYEES} component={EmployeesScreen} />
       <Stack.Screen

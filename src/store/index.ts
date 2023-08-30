@@ -1,12 +1,8 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import tripsReducers from './reducers/tripsReducers';
-import promotionsReducer from './reducers/promotionsReducer';
 import employeesReducer from './reducers/employeesReducer';
 import userReducer from './reducers/userReducer';
 
 const rootReducer = combineReducers({
-  trips: tripsReducers,
-  promotions: promotionsReducer,
   user: userReducer,
   employees: employeesReducer,
 });
