@@ -1,10 +1,12 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import employeesReducer from './reducers/employeesReducer';
 import userReducer from './reducers/userReducer';
+import evaluationReducer from './reducers/evaluationReducers';
 
 const rootReducer = combineReducers({
   user: userReducer,
   employees: employeesReducer,
+  evaluation: evaluationReducer,
 });
 
 const store = configureStore({

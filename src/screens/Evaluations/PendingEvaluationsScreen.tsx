@@ -1,19 +1,30 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {useAppSelector} from '../../store/hooks';
+import CardView from '../../components/CardView/CardView';
 import {SCREENS} from '..';
 
 const PendingEvaluationsScreen = () => {
   const navigation = useNavigation();
+  const selector = useAppSelector(state => state.evaluation);
+
+  const onEvaluationSelected = (evaluation: any) => {
+    navigation.navigate(SCREENS.EVALUATION_NEW, {
+      employee: evaluation.employee,
+    });
+  };
   return (
     <>
-      <Text>Evaluaciones pendientes</Text>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate(SCREENS.EVALUATION_NEW);
-        }}>
-        <Text>Evaluar Empleado</Text>
-      </TouchableOpacity>
+      {selector?.pendingEvaluations?.map(evaluation => (
+        <CardView
+          key={evaluation.employee.id}
+          id={evaluation.employee.id}
+          image={evaluation.employee.image}
+          title={`Evaluación Pendiente\n${evaluation.employee.firstName} ${evaluation.employee.lastName}`}
+          subtitle={evaluation.employee.company.title}
+          onPress={() => onEvaluationSelected(evaluation)}
+        />
+      ))}
     </>
   );
 };
