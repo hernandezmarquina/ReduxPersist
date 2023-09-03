@@ -6,12 +6,12 @@ import LoginScreen from './src/screens/Login/LoginScreen';
 import {useAppSelector} from './src/store/hooks';
 
 const App = () => {
-  const sessionToken = useAppSelector(state => state.user.token);
+  const user = useAppSelector(state => state.user);
   return (
     <NavigationContainer>
       <SafeAreaView style={{flex: 1}}>
         <StatusBar barStyle={'dark-content'} />
-        {sessionToken ? <Main /> : <LoginScreen />}
+        {user?.token ? <Main /> : <LoginScreen />}
       </SafeAreaView>
     </NavigationContainer>
   );
