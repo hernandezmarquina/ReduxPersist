@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAppSelector} from '../../store/hooks';
 import CardView from '../../components/CardView/CardView';
 import {SCREENS} from '..';
@@ -7,6 +7,10 @@ import {SCREENS} from '..';
 const PendingEvaluationsScreen = () => {
   const navigation = useNavigation();
   const selector = useAppSelector(state => state.evaluation);
+
+  useEffect(() => {
+    console.log('PendingEvaluationsScreen', selector);
+  }, [selector]);
 
   const onEvaluationSelected = (evaluation: any) => {
     navigation.navigate(SCREENS.EVALUATION_NEW, {

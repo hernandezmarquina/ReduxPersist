@@ -13,11 +13,13 @@ import {
   REGISTER,
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CryptoTransform from './transforms';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['evaluation'],
+  transforms: [CryptoTransform],
 };
 
 const rootReducer = combineReducers({
