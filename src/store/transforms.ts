@@ -14,4 +14,18 @@ const CryptoTransform = createTransform(
   {whitelist: ['evaluation']},
 );
 
-export default CryptoTransform;
+const ExpirationTransform = createTransform(
+  (inboundState: any, key: any) => {
+    return inboundState;
+  },
+  (outboundState: any, key: any) => {
+    if (outboundState && outboundState?.expiresAt >= Date.now()) {
+      return outboundState;
+    }
+    return {};
+  },
+  // Define which reducers this transform gets called for.
+  {whitelist: ['user']},
+);
+
+export {CryptoTransform, ExpirationTransform};

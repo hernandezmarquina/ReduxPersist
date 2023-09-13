@@ -14,11 +14,13 @@ export const loginAction = createAsyncThunk(
   },
 );
 
-const initialUserState: {token?: string} = {};
+const initialUserState: {token?: string; expiresAt?: number} = {};
 
 const userReducer = createReducer(initialUserState, builder => {
   builder.addCase(loginAction.fulfilled, (state, action) => {
     state.token = action.payload;
+    // Token expiration time (5 minutes)
+    state.expiresAt = Date.now() + 5 * 60 * 1000;
   });
 });
 
